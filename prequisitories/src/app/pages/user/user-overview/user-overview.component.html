@@ -1,0 +1,8 @@
+<h1>Benutzerübersicht</h1>
+<!--
+  The *ngFor directive is used to iterate over a collection (e.g., 'users') and render a template for each item.
+  In this example, 'user' represents the current item in the iteration.
+  -->
+<div *ngFor="let user of users" (click)="onUserClick(user.id)">
+  {{ user.name }}
+</div>

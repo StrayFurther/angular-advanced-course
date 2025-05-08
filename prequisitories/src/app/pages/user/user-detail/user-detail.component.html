@@ -1,0 +1,18 @@
+<div *ngIf="user; else noUserTemplate">
+  <h2>User Details</h2>
+  <p><strong>Name:</strong> {{ user.name }}</p>
+  <p><strong>Birthday:</strong> {{ user.birthDay | date }}</p>
+  <!--
+  The 'date' pipe formats the 'birthDay' property into a human-readable date string.
+  Pipes in Angular are used to transform data in templates, making it easier to display formatted or processed values directly in the view.
+  -->
+  <p><strong>Role:</strong> {{ user.userRole }}</p>
+</div>
+<ng-template #noUserTemplate>
+  <p>No user found.</p>
+</ng-template>
+<!--
+The *ngIf directive checks if user exists.
+If user is truthy, the first <div> is displayed.
+If user is falsy, the content inside the <ng-template> with the reference #noUserTemplate is displayed.
+-->
