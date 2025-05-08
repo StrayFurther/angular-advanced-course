@@ -1,7 +1,32 @@
-<div>
+<div class="animation__list">
   <div>
     <h2>Animation 1</h2>
-
+    <!--
+      This is a simple animation example using Angular's animation library. #
+      The [@activeTrigger] directive binds the animation to the <div> element.
+      The name 'activeTrigger' corresponds to the animation defined in the component's TypeScript file.
+    -->
     <div [@activeTrigger]="state" (click)="toggleState()">Click me to animate</div>
+  </div>
+  <!--
+    here we use the enter animation
+    it does work without a trigger state.
+    it will be triggered when the element is added to the DOM
+  -->
+  <div>
+    <h2>Animation 2</h2>
+    <div *ngIf="isVisible" @enterAnimation>Enter animation example</div>
+    <button (click)="toggleVisibility()">Toggle Enter</button>
+  </div>
+  <div>
+    <h2>Animation 3</h2>
+    <!--
+      there are also packages for animations
+      like ng-animate
+    -->
+    <div [@tada]="tadaActiveState">
+      <h2>TADA</h2>
+    </div>
+    <button (click)="toggleTada()">Toggle Tada</button>
   </div>
 </div>
