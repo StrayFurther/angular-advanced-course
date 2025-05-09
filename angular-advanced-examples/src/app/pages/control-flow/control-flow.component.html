@@ -1,0 +1,162 @@
+<div>
+  <h1>Control Flow</h1>
+  <div>
+    <h2>If-Else Struktur</h2>
+    <h3>If-Else (Old)</h3>
+    <!--
+      The old syntax for if-else in Angular uses the *ngIf directive to conditionally display elements.
+      The else clause is defined using the <ng-template> directive, which allows you to specify an alternative template to render when the condition is false.
+      It also has some difference in the DOM structure (*** means it will be displayed as HTML comment).
+      <div>
+        <p>Condition is True</p>
+        <***bindings={
+          "ng-reflect-ng-if": "true"
+        }**>
+        <***container**>
+      </div>
+    -->
+    <button (click)="oldIfElse = !oldIfElse">toggle Old If Else</button>
+    <div>
+      <p *ngIf="oldIfElse; else elseBlock">Condition is True</p>
+      <ng-template #elseBlock>
+        <p>Condition is False</p>
+      </ng-template>
+    </div>
+  </div>
+  <div >
+    <h3>If-Else (New)</h3>
+    <button (click)="newIfElse = !newIfElse">toggle Old If Else</button>
+    <!--
+      The new syntax for if-else in Angular uses the *ngIf directive with the else clause directly in the same element.
+      This approach is more concise and easier to read.
+      It also has some difference in the DOM structure (*** means it will be displayed as HTML comment).
+      <div>
+        <p>Condition is True</p>
+        <***container**>
+        <***container**>
+      </div>
+      -->
+    <div>
+      @if (newIfElse) {
+        <p>Condition is True</p>
+      } @else {
+        <p>Condition is False</p>
+      }
+    </div>
+  </div>
+  <div>
+    <h2>For Loop Struktur</h2>
+    <div>
+      <!--
+          the old syntax for ngFor in Angular uses the *ngFor directive to iterate over a collection (e.g., 'users') and render a template for each item.
+          The trackBy function is used to optimize rendering by tracking items by their unique identifier (in this case, 'user.id').
+          It also has some difference in the DOM structure (*** means it will be displayed as HTML comment).
+
+        <ul>
+          <li>Alice Johnson</li>
+          <li>Bob Smith</li>
+          <li>Charlie Brown</li>
+          <li>Diana Prince</li>
+          ...
+          ***bindings={
+            "ng-reflect-ng-for-track-by": "trackById(index, user) {\n    r"
+          }**>
+        </ul>
+      -->
+      <h3>For Loop (Old)</h3>
+      <ul>
+        <li *ngFor="let user of users; trackBy: trackById">{{user.name}}</li>
+      </ul>
+    </div>
+    <div>
+      <h3>For Loop (New)</h3>
+      <!--
+        Here we use the new syntax for ngFor in Angular, which is more concise and easier to read.
+        the track function is used to optimize rendering by tracking items by their unique identifier (in this case, 'user.id').
+        It also has some difference in the DOM structure (*** means it will be displayed as HTML comment).
+
+        <ul>
+          <li>Alice Johnson</li>
+          <li>Bob Smith</li>
+          <li>Charlie Brown</li>
+          ...
+          <***container**>
+        </ul>
+      -->
+      <ul>
+        @for (user of users; track user.id) {
+          <li>{{ user.name }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+  <div>
+    <h2>Switch Struktur</h2>
+    <div>
+      <h3>Switch (Old)</h3>
+      <!--
+        The old syntax for switch in Angular uses the *ngSwitch directive to conditionally display elements based on a specific expression.
+        The *ngSwitchCase directive is used to define different cases, and the *ngSwitchDefault directive defines the default case when none of the cases match.
+        It also has some difference in the DOM structure (*** means it will be displayed as HTML comment).
+
+        <div>
+          <***bindings={
+            "ng-reflect-ng-switch-case": "active"
+          }**>
+          <p>Selected: 1</p>
+          <***bindings={
+            "ng-reflect-ng-switch-case": "inactive"
+          }***>
+          <***container**>
+        </div>
+      -->
+      <div [ngSwitch]="statusOld">
+        <p *ngSwitchCase="'active'">Status is Active</p>
+        <p *ngSwitchCase="'inactive'">Status is Inactive</p>
+        <p *ngSwitchDefault>Status is Unknown</p>
+      </div>
+      <div>
+        <label for="statusSelector">Select Status:</label>
+        <select id="statusSelector" [(ngModel)]="statusOld">
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+          <option value="unknown">Unknown</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <h3>Switch (New)</h3>
+      <!--
+        The new syntax for switch in Angular is more concise and easier to read.
+        It uses the @switch directive to define different cases, and the @default directive defines the default case when none of the cases match.
+        It also has some difference in the DOM structure (*** means it will be displayed as HTML comment).
+        <div>
+          <***container**>
+          <p>Selected: 1</p>
+          <***container**>
+          <***container**>
+      -->
+      <div>
+        @switch (statusNew) {
+          @case ('active') {
+            <p>Status is Active</p>
+          }
+          @case ('inactive') {
+            <p>Status is Inactive</p>
+          }
+          @default {
+            <p>Status is Unknown</p>
+          }
+        }
+      </div>
+      <div>
+        <label for="statusSelector">Select Status:</label>
+        <select id="statusSelector" [(ngModel)]="statusNew">
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+          <option value="unknown">Unknown</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

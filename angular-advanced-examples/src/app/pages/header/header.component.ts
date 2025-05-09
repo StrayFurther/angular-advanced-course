@@ -10,13 +10,14 @@ import {CommonModule} from '@angular/common';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  availableRoutes: Route[] = routes.filter(route => route.path && route.component);
+  availableRoutes: Route[] = routes.filter(route => route.path && (route.component || route.loadComponent));
   activeRoute: string = '';
 
   constructor(private router: Router) {
     this.router.events.subscribe(() => {
       this.activeRoute = this.router.url;
     });
+    console.log(routes)
   }
 
   navigateTo(path: string | undefined): void {
