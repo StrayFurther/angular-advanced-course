@@ -1,0 +1,70 @@
+<div>
+  <div class="ex-1">
+    <h2>Changing a signal example</h2>
+    <!--
+      accessing the signal value with the () operator
+      this is the same as using the get() method.
+      the reason why it would be use signals instead of regular properties is
+      that the signal will trigger a change detection cycle
+    -->
+    <div>
+      <div>
+        <h3>Counter (Signal): {{ count() }}</h3>
+        <p>the increment button uses the update() method which expects a function</p>
+        <button (click)="increment()">Increment</button>
+        <p>the Increment Outside Angular Button calls the update() method to, but outside the angular context. It shows the reactivity of signals </p>
+        <button (click)="incrementSignalOutside()">Increment Outside Angular</button>
+        <p>The Reset button sets a value of the Signal directly using .set()</p>
+        <button (click)="reset()">Reset</button>
+      </div>
+      <!--
+        the following is an example with a regular property
+      -->
+      <div>
+        <h3>Counter (Property): {{ countProperty }}</h3> <!-- This will not update automatically -->
+        <p>The Increment button will increment a Property. it will be tracked by the change detection, but only because of zone.js being active
+        without it it would be not in Angulars context and therefore not be updated</p>
+        <button (click)="incrementProperty()">Increment</button>
+        <p>the increment outside angular button simulates how incrementing/changing a property outside the angular context will not trigger a update</p>
+        <button (click)="incrementPropertyOutsideAngular()">Increment Outside Angular</button>
+      </div>
+    </div>
+  </div>
+  <div class="ex-2">
+    <h2>Computed vs regular Functions (and Properties)</h2>
+
+    <h3>Signal and computed</h3>
+    <h3>Count: {{ count() }}</h3>
+    <h3>Double Count (computed): {{ doubleCount() }}</h3>
+    <p>Number how often the computed-function has been called: {{numberComputedDoubleCountIsCalled}}</p>
+    <p>changing the signal will result in an update for the computed variables. Inside and Outside of Angular Context</p>
+
+    <h3>Signal without computed</h3>
+    <h3>Count: {{ count() }}</h3>
+    <h3>Double Count (function): {{ getDoubleCount() }}</h3>
+    <p>Number how often the computed-function "getDoubleCount()" has been called: {{numberFunctionGetDoubleSignalIsCalled}}</p>
+    <button (click)="increment()">Increment Signal</button>
+    <button (click)="incrementSignalOutside()">Increment Outside Angular</button>
+    <button (click)="incrementSignalOutsideIntervall()">Increment Outside Angular (Interval)</button>
+    <p>
+      In This case the template will update when the signal will be changed. The function will be called each time the template is updated. <br>
+      Even if the singal var is not used in the template it will be updated, since the template will be checked because of the button click. An event causes Angular to re-evaluate the bindings in the template and update the DOM if necessary.
+    </p>
+
+    <h2>Property without computed</h2>
+    <h3>Count: {{ countProperty }}</h3>
+    <h3>Double Count (function): {{ getDoubleCountProperty() }}</h3>
+    <p>Number how often the none-computed-function "getDoubleCountProperty()" has been called {{numberFunctionPorpertyGetDoubleCountIsCalled}}</p>
+    <p>In this case the function returns a new value each time the template is updated. updating the property will trigger the change detection cycle, but only because it is in the angular context <br>
+    Changing it outside angular will not trigger the change detection cycle. The strange thing is clicking the button a second time will update the template, but it becomes more clear that updating a property outside of the angular context wont trigger updates, if incrementing it by an intervall (not interacting with the template)</p>
+
+    <h2>Property with computed</h2>
+    <h3>Count: {{ countProperty }}</h3>
+    <h3>Double Count (function): {{ doubleCountComputedByProperty() }}</h3>
+    <p>Number how often the computed with property function has been called: {{numberComputedDoubleCountPropertyIsCalled}}</p>
+    <p>The doubleCountComputedByProperty relies on countProperty, which is a regular property and does not have Angular's reactivity or change detection mechanism. It won't update</p>
+    <button (click)="incrementProperty()">Increment Property</button>
+    <button (click)="incrementPropertyOutsideAngular()">Increment Property Outside Angular</button>
+    <button (click)="incrementPropertyOutsideIntervall()">Increment Property Outside Angular (Intervall)</button>
+  </div>
+</div>

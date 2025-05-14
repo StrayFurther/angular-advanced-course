@@ -1,0 +1,42 @@
+<h1>Routing</h1>
+<h3>Ways of Route changing</h3>
+<div>
+  <h4>Router.navigate</h4>
+  <p>
+    The router.navigate method is used to navigate to a different route programmatically. It takes an array of route segments as its first argument and an optional second argument for additional options.
+    The code in this example to navigate to the 'animation' route happens in the component's TypeScript file, typically in a method that is triggered by a user action (like a button click).
+  </p>
+  <button (click)="navigateToRoute()">Go to Animations</button>
+</div>
+<div>
+  <h4>Router.navigateByUrl</h4>
+  <p>
+    The router.navigateByUrl method is used to navigate to a different route using a URL string. It takes a single argument, which is the URL to navigate to.
+    This method is useful when you want to navigate to a specific URL without constructing an array of route segments.
+  </p>
+  <button (click)="navigateByUrl()">Go to Animations</button>
+</div>
+<div>
+  <h4>RouterLink</h4>
+  <p>
+    The routerLink directive is used in the template to create a link to a different route. It takes an array of route segments as its value.
+    When the user clicks on the link, the router will navigate to the specified route.
+    You have to import the RouterModule in your module or in the &#64; decorator to use the routerLink directive.
+    Also you can add parameters to the route by using the routerLink directive with an array of segments.
+    For example, [routerLink]="['/user', userId]".
+    Also you can use the routerLinkActive directive to add a class to the link when the route is active.
+    This is useful for styling the active link or indicating to the user which route they are currently on.
+    And there is the queryParams directive to add query parameters to the URL like routerLink="/user" [queryParams]="&#123; id: userId &#125;".
+  </p>
+  <a [routerLink]="['/animation']" routerLinkActive="active">Go to Animations</a>
+</div>
+
+<div>
+  <h4>Changing Routes with parameters</h4>
+  <p>
+    Here you can see, how many times we clickes the button below consecutively.
+    The click will result in a route change to this exact page with the Current number of times visited this page consecutively with that button.
+  </p>
+  <p>Times Visited: {{number}}</p>
+  <button (click)="navigateWithParams()">Param Route Change</button>
+</div>

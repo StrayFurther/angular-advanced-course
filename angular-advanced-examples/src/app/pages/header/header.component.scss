@@ -10,14 +10,18 @@
     padding: 0;
 
     li {
-      a {
+      display: flex;
+      a, &>* {
         text-decoration: none;
         color: #fff;
         padding: 0.5rem 1rem;
         border-radius: 4px;
         transition: background-color 0.3s;
+        height: 50%;
+        text-align: center;
+        vertical-align: middle;
 
-        &:hover {
+        &:hover{
           background-color: #555;
           cursor: pointer;
         }

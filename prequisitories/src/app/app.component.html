@@ -1,1 +1,18 @@
+<!--
+  <router-outlet> is a directive that acts as a placeholder for the router to display
+  the component associated with the current route.
+  It is used in the main application component to load the appropriate component
+  based on the current URL.
+  When the user navigates to a different route, Angular replaces the content of the
+  <router-outlet> with the component associated with that route.
+  If there are multiple <router-outlet> elements in the application, Angular will
+  load the component into the first <router-outlet> it finds in the DOM.
+  If there are sub routes, Angular will load the component into the nested <router-outlet>
+  elements.
+  Therefore for sub routes, you need to add a <router-outlet> in the parent component
+  where you want to load the child component.
+  In this case (user.component.html), the <router-outlet> is used to load the user-detail component
+  when the user navigates to the /user/:id route and the user-list component
+  when the user navigates to the /user route.
+ -->
 <router-outlet />

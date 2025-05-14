@@ -1,0 +1,30 @@
+.ex-1 {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  div > div{
+    display: flex;
+    flex-direction: column;
+    &>button {
+      width: 128px;
+      margin-bottom: 10px;
+    }
+  }
+  border-bottom: black 1px solid;
+
+}
+
+.ex-2 {
+  padding: 10px;
+  margin-top: 50px;
+  h2 {
+    margin-top: 30px;
+  }
+  h3 {
+    margin-top: 30px;
+  }
+}
+
+button {
+  margin-right: 10px;
+}

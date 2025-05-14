@@ -1,7 +1,9 @@
 <nav class="header-nav">
   <ul>
+    <li><a (click)="goBack()"><span class="material-icons">arrow_back</span></a></li>
+    <li><a (click)="goForward()"><span class="material-icons">arrow_forward</span></a></li>
     <li *ngFor="let route of availableRoutes" [class]="activeRoute === '/' + route.path ? 'active' : ''">
-      <a (click)="navigateTo(route.path)">{{ route.path || '' }}</a>
+      <a (click)="navigateTo(route.path)">{{ (route.path || '') | splitByDDot }}</a>
     </li>
   </ul>
 </nav>

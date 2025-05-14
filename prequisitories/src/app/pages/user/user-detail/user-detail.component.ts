@@ -23,7 +23,12 @@ export class UserDetailComponent implements OnInit {
   // It is recommended to handle data fetching in the ngOnInit lifecycle hook rather than the constructor.
   // Fetching data in ngOnInit ensures that the component is fully initialized before making API calls.
   ngOnInit() {
+
+    // in earlier versions of angular to get parameters out of the URL we used to use the ActivatedRoute service
     const id = parseInt(this.route.snapshot.paramMap.get('id') || '');
+    // in newer versions we can use the @Input decorator to get the parameters out of the URL like this:
+    // @Input() id: string | null = null;
+
     if (!isNaN(id)) {
       // old way, but deprecated in new vesions of angular
       /*
