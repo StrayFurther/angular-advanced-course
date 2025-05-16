@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, computed, NgZone, signal } from '@angular/core';
+import {Component, computed, NgZone, signal } from '@angular/core';
 
 @Component({
   selector: 'app-signals',
@@ -29,7 +29,7 @@ export class SignalsComponent {
     return this.countProperty * 2
   });
 
-  constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef) {
+  constructor(private ngZone: NgZone) {
   }
 
   // update vs set:
@@ -78,7 +78,7 @@ export class SignalsComponent {
   incrementPropertyOutsideIntervall(): void {
     this.ngZone.runOutsideAngular(() => {
       const nativeSetInterval = (window as any)['__zone_symbol__setInterval'] || window.setInterval;
-      let timeoutId: number | undefined;
+      let timeoutId: any;
 
       this.intervalId = nativeSetInterval(() => {
         if (!timeoutId) {
@@ -98,7 +98,7 @@ export class SignalsComponent {
   incrementSignalOutsideIntervall(): void {
     this.ngZone.runOutsideAngular(() => {
       const nativeSetInterval = (window as any)['__zone_symbol__setInterval'] || window.setInterval;
-      let timeoutId: number | undefined;
+      let timeoutId: any;
 
       this.intervalId = nativeSetInterval(() => {
         if (!timeoutId) {
